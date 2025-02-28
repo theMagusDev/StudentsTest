@@ -1,7 +1,14 @@
-package main
+package utils
 
-func createBoxToCardMap() map[int]int {
-	cardsNumbers := getShuffledArray(50, 50)
+import (
+	"math/rand"
+	"time"
+)
+
+var random = rand.New(rand.NewSource(time.Now().UnixNano()))
+
+func CreateBoxToCardMap() map[int]int {
+	cardsNumbers := GetShuffledArray(50, 50)
 	boxToCardMap := make(map[int]int)
 	for boxNumber := 1; boxNumber <= 50; boxNumber++ {
 		boxToCardMap[boxNumber] = cardsNumbers[boxNumber-1]
@@ -9,7 +16,7 @@ func createBoxToCardMap() map[int]int {
 	return boxToCardMap
 }
 
-func getShuffledArray(length, max int) []int {
+func GetShuffledArray(length, max int) []int {
 	if length > max {
 		panic("length cannot be greater than max")
 	}

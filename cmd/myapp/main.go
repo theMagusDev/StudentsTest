@@ -3,13 +3,11 @@ package main
 import (
 	"fmt"
 	"math"
-	"math/rand"
-	"time"
+	"Test/internal/utils"
 )
 
 const NumberOfExperiments = 20000
 
-var random = rand.New(rand.NewSource(time.Now().UnixNano()))
 
 func main() {
 	runExperiment(false) // random strategy
@@ -20,8 +18,8 @@ func runExperiment(smart bool) {
 	successExperimentsCount := 0
 
 	for i := 0; i < NumberOfExperiments; i++ {
-		studentsNumbers := getShuffledArray(50, 50)
-		boxToCardMap := createBoxToCardMap()
+		studentsNumbers := utils.GetShuffledArray(50, 50)
+		boxToCardMap := utils.CreateBoxToCardMap()
 
 		allStudentsPassed := true
 
@@ -54,7 +52,7 @@ func runExperiment(smart bool) {
 
 
 func randomExperimentStudent(studentNumber int, boxToCardMap map[int]int) bool {
-	studentChoices := getShuffledArray(25, 50)
+	studentChoices := utils.GetShuffledArray(25, 50)
 	for _, studentChoice := range studentChoices {
 		if boxToCardMap[studentChoice] == studentNumber {
 			return true
